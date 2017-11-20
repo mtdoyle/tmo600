@@ -102,4 +102,5 @@ ENV/
 
 .idea/*
 
-.idea
+*.idea/
+*.idea/*
