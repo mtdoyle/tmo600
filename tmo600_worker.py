@@ -18,7 +18,6 @@ def find600(coords):
         write_to_db.write_to_db(coords.split(',')[0],coords.split(',')[1],result)
 
 def callback(ch, method, properties, body):
-    print(" [x] checking %r" % body)
     find600(body)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
