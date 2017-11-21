@@ -2,7 +2,7 @@ import fiona
 import shapely.geometry
 
 f = open('coords.txt','r')
-good_coords = []
+g = open('good_coords.txt','w')
 with fiona.open("shapefile/cb_2016_us_nation_5m.shp") as fiona_collection:
 
     # In this case, we'll assume the shapefile only has one record/layer (e.g., the shapefile
@@ -19,13 +19,7 @@ with fiona.open("shapefile/cb_2016_us_nation_5m.shp") as fiona_collection:
         point = shapely.geometry.Point(float(lon),float(lat)) # longitude, latitude
 
         if shape.contains(point):
-            good_coords.append({'lat':lat,
-                           'lon':lon})
+            g.write("{0}\n".format(coords))
 
 f.close()
-
-g = open('good_coords.txt','w')
-
-for i in good_coords:
-    g.write("{0},{1}\n".format(i['lat'], i['lon']))
 g.close()
