@@ -3,7 +3,7 @@
 1. install these python modules:
 
 	* Just for running the 600 finder:
-	 	* pip install pika pymysql fiona shapely
+	 	* pip install pika pymysql
 	* For running the coordinate trimmer (only works on OSX and linux):
 		* pip install fiona shapely 
 
