@@ -5,7 +5,7 @@ import multiprocessing
 import write_to_db
 
 def process_coords(coords):
-    with fiona.open("shapefile/MNState_MNDOT.shp") as fiona_collection:
+    with fiona.open("shapefile/tl_2013_27_cousub.shp") as fiona_collection:
         # In this case, we'll assume the shapefile only has one record/layer (e.g., the shapefile
         # is just for the borders of a single country, etc.).
         shapefile_record = fiona_collection.next()
@@ -44,7 +44,7 @@ def consume():
 
 
 def work():
-    workers = 4
+    workers = 1
     pool = multiprocessing.Pool(processes=workers)
     for i in xrange(0, workers):
         pool.apply_async(consume)
