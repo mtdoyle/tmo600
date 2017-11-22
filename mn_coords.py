@@ -5,13 +5,9 @@ import multiprocessing
 import write_to_db
 
 def process_coords(coords):
-    with fiona.open("shapefile/tl_2013_27_cousub.shp") as fiona_collection:
-        # In this case, we'll assume the shapefile only has one record/layer (e.g., the shapefile
-        # is just for the borders of a single country, etc.).
-        shapefile_record = fiona_collection.next()
-
+    for feat in fiona.open("shapefile/tl_2013_27_cousub.shp"):
         # Use Shapely to create the polygon
-        shape = shapely.geometry.asShape(shapefile_record['geometry'])
+        shape = shapely.geometry.asShape(feat['geometry'])
         # print "processing {0}".format(coords)
         lat = coords.split(',')[0]
         lon = coords.split(',')[1].rstrip()
