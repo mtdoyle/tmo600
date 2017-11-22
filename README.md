@@ -28,6 +28,7 @@
 
 # Run the 600Mhz checker
 1. run 'python tmo600\_worker.py'
+	* this can be ran multiple times on the same machine or multiple machines. If running on a different machine than your docker server, change the IP address from either 'localhost' or '127.0.0.1' to the IP address of the docker host machine.
 2. wait a few hours for it to run
 	* You can check how many coordinates are left by logging into the RabbitMQ gui:
 		* http://localhost:8080
