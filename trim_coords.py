@@ -42,16 +42,21 @@ def consume():
     except KeyboardInterrupt:
         pass
 
-workers = 8
-pool = multiprocessing.Pool(processes=workers)
-for i in xrange(0, workers):
-    pool.apply_async(consume)
 
-# Stay alive
-try:
-    while True:
-        continue
-except KeyboardInterrupt:
-    print ' [*] Exiting...'
-    pool.terminate()
-    pool.join()
+def work():
+    workers = 8
+    pool = multiprocessing.Pool(processes=workers)
+    for i in xrange(0, workers):
+        pool.apply_async(consume)
+
+    # Stay alive
+    try:
+        while True:
+            continue
+    except KeyboardInterrupt:
+        print ' [*] Exiting...'
+        pool.terminate()
+        pool.join()
+
+if __name__ == '__main__':
+    work()
