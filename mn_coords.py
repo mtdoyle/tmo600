@@ -3,18 +3,20 @@ import pika
 import shapely.geometry
 import multiprocessing
 import write_to_db
+from shapely.ops import cascaded_union, unary_union
 
 def process_coords(coords):
+    lat = coords.split(',')[0]
+    lon = coords.split(',')[1].rstrip()
     for feat in fiona.open("shapefile/tl_2013_27_cousub.shp"):
         # Use Shapely to create the polygon
         shape = shapely.geometry.asShape(feat['geometry'])
         # print "processing {0}".format(coords)
-        lat = coords.split(',')[0]
-        lon = coords.split(',')[1].rstrip()
         point = shapely.geometry.Point(float(lon),float(lat)) # longitude, latitude
 
         if shape.contains(point):
             write_to_db.write_mn_coords_to_db(lat, lon)
+            break
 
 
 def callback(ch, method, properties, body):
