@@ -16,7 +16,6 @@ def process_coords(coords):
 
         if shape.contains(point):
             write_to_db.write_mn_coords_to_db(lat, lon)
-            break
 
 
 def callback(ch, method, properties, body):
