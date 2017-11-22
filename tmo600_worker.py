@@ -15,7 +15,7 @@ def find600(coords):
     q = requests.get(request_url.format(coords))
     result = ast.literal_eval(q.content)['response'][23]
     if int(result) > 0:
-        write_to_db.write_to_db(coords.split(',')[0],coords.split(',')[1],result)
+        write_to_db.write_600_to_db(coords.split(',')[0],coords.split(',')[1],result)
 
 def callback(ch, method, properties, body):
     find600(body)
