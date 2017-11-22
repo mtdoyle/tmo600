@@ -42,7 +42,7 @@ def consume():
 
 def work():
     workers = 1
-    pool = multiprocessing.Pool(processes=workers)
+    pool = multiprocessing.Pool(processes=workers, maxtasksperchild=50)
     for i in xrange(0, workers):
         pool.apply_async(consume)
 
